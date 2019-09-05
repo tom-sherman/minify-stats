@@ -8,9 +8,10 @@ const glob = promisify(require('glob'))
 const readFile = promisify(fs.readFile)
 const writeFile = promisify(fs.writeFile)
 
-Worker.defaultMaxListeners = Infinity;
+const worker = new Worker('./worker.js')
+worker.setMaxListeners(Infinity)
 const minifyWorker = Comlink.wrap(nodeEndpoint(
-  new Worker('./worker.js')
+  worker
 ))
 
 const getGzipSize = text => new Promise(resolve => {
