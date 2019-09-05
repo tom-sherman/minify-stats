@@ -60,7 +60,7 @@ const getAllSizes = async file => {
 }
 
 ;(async () => {
-  const files = await glob('/var/www/html/static/**/*.js')
+  const files = await glob(process.argv[2])
   const results = await Promise.all(files.map(file => getAllSizes(file)))
 
   let csv = 'original,gzip,brotli,minified,minifiedGzip,minifiedBrotli\n'
