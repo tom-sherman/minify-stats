@@ -44,13 +44,14 @@ const getMinifiedText = async text => {
 
 const getAllSizes = async file => {
   const text = await readFile(file, { encoding: 'utf8' })
+  const minifiedText = await getMinifiedText(text)
   const [ brotli, gzip, original, minified, minifiedGzip, minifiedBrotli ] = await Promise.all([
     getBrotliSize(text),
     getGzipSize(text),
     getSize(text),
-    getMinifiedText(text).then(getSize),
-    getMinifiedText(text).then(getGzipSize),
-    getMinifiedText(text).then(getBrotliSize),
+    getSize(minifiedText),
+    getGzipSize(minifiedText),
+    getBrotliSize(minifiedText),
   ])
 
   console.log(`Done ${file}`)
