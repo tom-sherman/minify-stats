@@ -4,7 +4,7 @@
   "description": "Minify stats",
   "dependencies": {
     "comlink": "^4.0.2",
-    "glob": "^7.1.4",
+    "glob": "^13.0.6",
     "terser": "^4.2.1"
   }
 }
